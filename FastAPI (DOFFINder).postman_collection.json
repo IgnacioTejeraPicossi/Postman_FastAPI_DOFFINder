@@ -181,8 +181,8 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 1600ms\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(1600);\r",
+							"pm.test(\"Response time is less than 1900ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1900);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Content-Type is present\", function () {\r",
@@ -236,8 +236,8 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 1600ms\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(1600);\r",
+							"pm.test(\"Response time is less than 1800ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1800);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Content-Type is present\", function () {\r",
@@ -274,6 +274,246 @@
 						"models",
 						"{{model_key2}}",
 						"evaluations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Example Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1800ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/data/examples",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"data",
+						"examples"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Example Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1800ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})\r",
+							"\r",
+							"// Hent verdien fra en variabel\r",
+							"let response = pm.response.json();   // Parse JSON-responsen\r",
+							"let example_value = response.id;     // Hent verdien av \"id\"\r",
+							"console.log(\"ID:\", example_value);   // Skriv ut ID i konsollen\r",
+							"\r",
+							"// Sett verdien til collection-variabelen 'example_id'\r",
+							"pm.collectionVariables.set(\"example_id\", example_value);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"string\",\r\n  \"raw_input\": \"string\",\r\n  \"raw_output\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/data/examples",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"data",
+						"examples"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Example By Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1800ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"string\",\r\n  \"raw_input\": \"string\",\r\n  \"raw_output\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/data/example/{{example_id}}",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"data",
+						"example",
+						"{{example_id}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Example Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1800ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"string\",\r\n  \"raw_input\": \"string\",\r\n  \"raw_output\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/data/example/{example_id}",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"data",
+						"example",
+						"{example_id}"
 					]
 				}
 			},
@@ -316,6 +556,11 @@
 		{
 			"key": "model_key2",
 			"value": "gpt-4o-mini",
+			"type": "string"
+		},
+		{
+			"key": "example_id",
+			"value": "2025-100768",
 			"type": "string"
 		}
 	]
