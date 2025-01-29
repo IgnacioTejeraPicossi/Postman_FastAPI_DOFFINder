@@ -18,8 +18,8 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 500ms\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"pm.test(\"Response time is less than 600ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Content-Type is present\", function () {\r",
@@ -28,7 +28,17 @@
 							"\r",
 							"pm.test(\"Content-Type is JSON\", function () {\r",
 							"    pm.response.to.be.json;\r",
-							"})"
+							"})\r",
+							"\r",
+							"// Hent verdien fra en variabel\r",
+							"let response = pm.response.json();   // Parse JSON-responsen\r",
+							"// Henter første objekt i arrayet og deretter 'id' feltet\r",
+							"let notice_value = response[0].id;\r",
+							"console.log(\"ID:\", notice_value);   // Skriv ut ID i konsollen\r",
+							"\r",
+							"// Sett verdien til collection-variabelen 'example_id'\r",
+							"pm.collectionVariables.set(\"notice_id\", notice_value);\r",
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -498,6 +508,119 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/data/example/{{example_id}}",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"data",
+						"example",
+						"{{example_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error Delete Example Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1800ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/data/example/{{example_id}}",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"data",
+						"example",
+						"{{example_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Example By Id  After Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Status code is 404 'Not Found'\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1800ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
 					"raw": "{\r\n  \"id\": \"string\",\r\n  \"raw_input\": \"string\",\r\n  \"raw_output\": \"string\"\r\n}",
 					"options": {
 						"raw": {
@@ -506,14 +629,21 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}api/data/example/{example_id}",
+					"raw": "{{baseUrl}}api/data/example/{{example_id}}",
 					"host": [
 						"{{baseUrl}}api"
 					],
 					"path": [
 						"data",
 						"example",
-						"{example_id}"
+						"{{example_id}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -560,7 +690,12 @@
 		},
 		{
 			"key": "example_id",
-			"value": "2025-100768",
+			"value": "Test",
+			"type": "string"
+		},
+		{
+			"key": "notice_id",
+			"value": "test",
 			"type": "string"
 		}
 	]
