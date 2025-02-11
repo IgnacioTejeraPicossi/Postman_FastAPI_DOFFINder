@@ -290,6 +290,171 @@
 			"response": []
 		},
 		{
+			"name": "Get Notice Response model gemini-1.5-flash",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": \"string\",\r\n    \"heading\": \"string\",\r\n    \"description\": \"string\",\r\n    \"issueDate\": \"string\",\r\n    \"publicationDate\": \"string\",\r\n    \"deadline\": \"string\",\r\n    \"procedureMainFeatures\": \"string\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/models/{{model_key3}}/evaluations",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"models",
+						"{{model_key3}}",
+						"evaluations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Notice Response model granite-3-8b-instruct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": \"string\",\r\n    \"heading\": \"string\",\r\n    \"description\": \"string\",\r\n    \"issueDate\": \"string\",\r\n    \"publicationDate\": \"string\",\r\n    \"deadline\": \"string\",\r\n    \"procedureMainFeatures\": \"string\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/models/{{model_key4}}/evaluations",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"models",
+						"{{model_key4}}",
+						"evaluations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Notice Response model llama3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate that the response code should be 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": \"string\",\r\n    \"heading\": \"string\",\r\n    \"description\": \"string\",\r\n    \"issueDate\": \"string\",\r\n    \"publicationDate\": \"string\",\r\n    \"deadline\": \"string\",\r\n    \"procedureMainFeatures\": \"string\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/models/{{model_key5}}/evaluations",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"models",
+						"{{model_key5}}",
+						"evaluations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get Example Data",
 			"event": [
 				{
@@ -657,12 +822,12 @@
 					"script": {
 						"exec": [
 							"// Validate that the response code should be 200\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 1800ms\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(1800);\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Content-Type is present\", function () {\r",
@@ -691,22 +856,22 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"id\": \"string\",\r\n  \"raw_input\": \"string\",\r\n  \"raw_output\": \"string\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1efe7a3b-9bf4-4420-b90c-c03e144782df"
 						}
-					}
+					]
 				},
 				"url": {
-					"raw": "{{baseUrl}}api/data/examples",
+					"raw": "{{baseUrl}}api/notices-with-scores",
 					"host": [
 						"{{baseUrl}}api"
 					],
 					"path": [
-						"data",
-						"examples"
+						"notices-with-scores"
 					]
 				}
 			},
@@ -759,6 +924,21 @@
 		{
 			"key": "notice_id",
 			"value": "test",
+			"type": "string"
+		},
+		{
+			"key": "model_key3",
+			"value": "gemini-1.5-flash",
+			"type": "string"
+		},
+		{
+			"key": "model_key4",
+			"value": "granite-3-8b-instruct",
+			"type": "string"
+		},
+		{
+			"key": "model_key5",
+			"value": "llama3",
 			"type": "string"
 		}
 	]
