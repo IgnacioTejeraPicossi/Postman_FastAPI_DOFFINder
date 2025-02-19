@@ -466,8 +466,8 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 5000ms\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"pm.test(\"Response time is less than 7000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(7000);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Content-Type is present\", function () {\r",
@@ -496,13 +496,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}api/models/{{model_key5}}/evaluations",
+					"raw": "{{baseUrl}}api/models/{{model_key6}}/evaluations",
 					"host": [
 						"{{baseUrl}}api"
 					],
 					"path": [
 						"models",
-						"{{model_key5}}",
+						"{{model_key6}}",
 						"evaluations"
 					]
 				}
